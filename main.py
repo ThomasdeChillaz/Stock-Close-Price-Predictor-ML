@@ -103,7 +103,7 @@ last_60_days = latest_data['Close'].values[-prediction_days:]
 #Scale the data
 last_60_days_scaled = scaler.transform(last_60_days.reshape(-1, 1))
 
-# Prepare for prediction
+#Prepare for prediction
 real_data = np.array([last_60_days_scaled[:, 0]])
 real_data = np.reshape(real_data, (real_data.shape[0], real_data.shape[1], 1))
 
@@ -115,4 +115,5 @@ prediction = scaler.inverse_transform(prediction)
 # Just terminal printing of the prediction once the model is trained localy
 print(f"\nPrediction for next trading day: ${prediction[0][0]:.2f}")
 print(f"Current price: ${latest_data['Close'].values[-1]:.2f}")
+
 print(f"Predicted change: ${prediction[0][0] - latest_data['Close'].values[-1]:.2f} ({((prediction[0][0] / latest_data['Close'].values[-1]) - 1) * 100:.2f}%)")
